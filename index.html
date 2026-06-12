@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoPoint</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/ecopoint.css" rel="stylesheet">
+  <script>
+    (function () {
+      var saved = localStorage.getItem("ecopoint-theme");
+      if (saved === "dark") {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    })();
+  </script>
+</head>
+
+<body>
+  <aside id="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-name">
+        <div class="brand-dot"></div>EcoPoint
+      </div>
+      <div class="brand-sub">Sustentabilidade urbana</div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <button class="nav-btn active" data-tab="inicio">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 12.5V20h6v-6h4v6h6v-7.5"/>
+          <path d="M3 12.5L12 4l9 8.5"/>
+        </svg>
+        Início
+      </button>
+      <button class="nav-btn" data-tab="mapa">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 21s-6-4.5-6-9.5a6 6 0 1 1 12 0c0 5-6 9.5-6 9.5z"/>
+          <circle cx="12" cy="11.5" r="1.75"/>
+        </svg>
+        Mapa
+      </button>
+      <button class="nav-btn" data-tab="denuncia">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 8v5"/>
+          <circle cx="12" cy="16" r="0.75" fill="currentColor" stroke="none"/>
+          <path d="M4 20h16L12 4 4 20z"/>
+        </svg>
+        Denúncia
+      </button>
+      <button class="nav-btn" data-tab="perfil">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="8" r="3.25"/>
+          <path d="M5 20v-1a7 7 0 0 1 14 0v1"/>
+        </svg>
+        Perfil
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="d-flex align-items-center gap-2">
+        <div class="user-av">U</div>
+        <div>
+          <div class="user-name">Usuário</div>
+          <div class="user-pts">300 pts · Nível 2</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div id="sidebar-overlay"></div>
+
+  <div id="main-wrapper">
+    <div class="topbar">
+      <div class="d-flex align-items-center gap-2">
+        <button id="hamburger-btn" class="hamburger me-1" aria-label="Menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <path d="M4 7h16M4 12h16M4 17h16"/>
+          </svg>
+        </button>
+        <div class="topbar-title" id="topbar-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 12.5V20h6v-6h4v6h6v-7.5"/>
+            <path d="M3 12.5L12 4l9 8.5"/>
+          </svg>
+          Início
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Alternar tema claro/escuro" title="Alternar tema">
+          <span class="theme-icon theme-icon-moon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 14.5A7.5 7.5 0 0 1 9.5 4 6.5 6.5 0 1 0 20 14.5z"/>
+            </svg>
+          </span>
+          <span class="theme-icon theme-icon-sun">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="4"/>
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+            </svg>
+          </span>
+        </button>
+        <span class="badge-pts">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="8"/>
+            <path d="M12 8v4l2.5 2.5"/>
+          </svg>
+          300 pontos
+        </span>
+      </div>
+    </div>
+
+    <div class="screen active" id="tab-inicio">
+      <div class="home-hero mb-4">
+        <div>
+          <p class="hero-sub mb-0">Bem-vindo de volta,</p>
+          <h1 class="hero-title mb-0">Usuário</h1>
+          <div class="d-flex gap-2 mt-3">
+            <div class="hstat">
+              <span class="hstat-val">300</span>
+              <span class="hstat-key">Pontos</span>
+            </div>
+            <div class="hstat">
+              <span class="hstat-val">4</span>
+              <span class="hstat-key">Descartes</span>
+            </div>
+            <div class="hstat">
+              <span class="hstat-val">2</span>
+              <span class="hstat-key">Denúncias</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 19l-2-3.5h4L7 8l3-1"/>
+            <path d="M17 19l2-3.5h-4l2-7.5-3-1"/>
+            <path d="M12 4v4l-3 1"/>
+            <path d="M12 4v4l3 1"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-12 col-lg-6">
+          <div class="eco-card">
+            <div class="card-title">Ecopontos próximos</div>
+            <div class="d-flex flex-column gap-2">
+              <a class="ep-row" onclick="goTab('mapa')" style="cursor:pointer;">
+                <div class="ep-ico ico-g">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 19l-2-3.5h4L7 8l3-1"/>
+                    <path d="M17 19l2-3.5h-4l2-7.5-3-1"/>
+                    <path d="M12 4v4l-3 1"/>
+                    <path d="M12 4v4l3 1"/>
+                  </svg>
+                </div>
+                <div class="flex-grow-1">
+                  <div class="ep-name">EcoPonto Central</div>
+                  <div class="ep-meta"><span class="meta-loc">500 m de distância</span> · <span class="tag-open">Aberto</span></div>
+                </div>
+                <div class="ep-arr">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 8l4 4-4 4"/>
+                  </svg>
+                </div>
+              </a>
+
+              <a class="ep-row" onclick="goTab('mapa')" style="cursor:pointer;">
+                <div class="ep-ico ico-a">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="5" y="7" width="14" height="10" rx="1.5"/>
+                    <path d="M9 11h6M12 11v4"/>
+                  </svg>
+                </div>
+                <div class="flex-grow-1">
+                  <div class="ep-name">Coleta de Eletrônicos</div>
+                  <div class="ep-meta"><span class="meta-loc">1,4 km de distância</span> · <span class="tag-open">Aberto</span></div>
+                </div>
+                <div class="ep-arr">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 8l4 4-4 4"/>
+                  </svg>
+                </div>
+              </a>
+
+              <a class="ep-row" onclick="goTab('mapa')" style="cursor:pointer;">
+                <div class="ep-ico ico-r">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3c-3 4.5-6 7.5-6 11a6 6 0 0 0 12 0c0-3.5-3-6.5-6-11z"/>
+                  </svg>
+                </div>
+                <div class="flex-grow-1">
+                  <div class="ep-name">Coleta de Óleo</div>
+                  <div class="ep-meta"><span class="meta-loc">1,4 km de distância</span> · <span class="tag-closed">Fechado</span></div>
+                </div>
+                <div class="ep-arr">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 8l4 4-4 4"/>
+                  </svg>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-6">
+          <div class="eco-card">
+            <div class="card-title">Atividade recente</div>
+            <div class="d-flex flex-column gap-2">
+              <div class="act-row">
+                <div class="act-dot" style="background:#40916C"></div>
+                <div class="act-txt">Descarte no EcoPonto Central</div>
+                <div class="act-pts">+50 pts</div>
+              </div>
+              <div class="act-row">
+                <div class="act-dot" style="background:#E9C46A"></div>
+                <div class="act-txt">Coleta de eletrônicos realizada</div>
+                <div class="act-pts">+80 pts</div>
+              </div>
+              <div class="act-row">
+                <div class="act-dot" style="background:#E76F51"></div>
+                <div class="act-txt">Denúncia enviada — Av. Brasil</div>
+                <div class="act-pts">+30 pts</div>
+              </div>
+              <div class="act-row">
+                <div class="act-dot" style="background:#40916C"></div>
+                <div class="act-txt">Descarte de óleo de cozinha</div>
+                <div class="act-pts">+40 pts</div>
+              </div>
+              <div class="act-row">
+                <div class="act-dot" style="background:#74C69D"></div>
+                <div class="act-txt">Check-in no EcoPonto Norte</div>
+                <div class="act-pts">+20 pts</div>
+              </div>
+              <div class="act-row">
+                <div class="act-dot" style="background:#40916C"></div>
+                <div class="act-txt">Descarte de papel e papelão</div>
+                <div class="act-pts">+30 pts</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen" id="tab-mapa">
+      <div class="d-flex gap-2 flex-wrap mb-3">
+        <input class="form-control search-bar flex-grow-1" placeholder="Buscar ecopontos...">
+        <button class="filter-btn active">Todos</button>
+        <button class="filter-btn">Reciclagem</button>
+        <button class="filter-btn">Eletrônicos</button>
+        <button class="filter-btn">Óleo</button>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-12 col-lg-8">
+          <div class="map-box">
+            <svg viewBox="0 0 680 420" xmlns="http://www.w3.org/2000/svg">
+              <rect width="680" height="420" fill="#c8e6c9" />
+              <rect x="0" y="100" width="680" height="22" fill="#a5d6a7" />
+              <rect x="0" y="230" width="680" height="22" fill="#a5d6a7" />
+              <rect x="0" y="355" width="680" height="22" fill="#a5d6a7" />
+              <rect x="100" y="0" width="22" height="420" fill="#a5d6a7" />
+              <rect x="250" y="0" width="22" height="420" fill="#a5d6a7" />
+              <rect x="420" y="0" width="22" height="420" fill="#a5d6a7" />
+              <rect x="570" y="0" width="22" height="420" fill="#a5d6a7" />
+              <rect x="14" y="14" width="80" height="80" rx="5" fill="#b9dbb8" />
+              <rect x="128" y="14" width="116" height="80" rx="5" fill="#b9dbb8" />
+              <rect x="278" y="14" width="136" height="80" rx="5" fill="#b9dbb8" />
+              <rect x="444" y="14" width="120" height="80" rx="5" fill="#b9dbb8" />
+              <rect x="14" y="128" width="80" height="96" rx="5" fill="#b9dbb8" />
+              <rect x="128" y="128" width="116" height="96" rx="5" fill="#b9dbb8" />
+              <rect x="278" y="128" width="136" height="96" rx="5" fill="#b9dbb8" />
+              <rect x="444" y="128" width="120" height="96" rx="5" fill="#b9dbb8" />
+              <rect x="596" y="128" width="70" height="96" rx="5" fill="#b9dbb8" />
+              <rect x="14" y="258" width="80" height="90" rx="5" fill="#b9dbb8" />
+              <rect x="128" y="258" width="116" height="90" rx="5" fill="#b9dbb8" />
+              <rect x="278" y="258" width="136" height="90" rx="5" fill="#b9dbb8" />
+              <rect x="444" y="258" width="120" height="90" rx="5" fill="#b9dbb8" />
+              <rect x="596" y="258" width="70" height="90" rx="5" fill="#b9dbb8" />
+              <circle cx="340" cy="176" r="14" fill="#2D6A4F" opacity="0.25" />
+              <circle cx="340" cy="176" r="8" fill="#2D6A4F" />
+              <circle cx="340" cy="176" r="4" fill="white" />
+              <g style="cursor:pointer" onclick="selectPin('central')">
+                <circle cx="186" cy="90" r="18" fill="#2D6A4F" stroke="white" stroke-width="2" />
+                <g transform="translate(178, 82)" stroke="white" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 12l-1.5-2.5h2.5L2 5l1.5-.5"/>
+                  <path d="M12 12l1.5-2.5H11l1.5-5-1.5-.5"/>
+                  <path d="M7 3v2.5l-1.5.5"/>
+                  <path d="M7 3v2.5l1.5.5"/>
+                </g>
+              </g>
+              <g style="cursor:pointer" onclick="selectPin('eletronicos')">
+                <circle cx="512" cy="176" r="18" fill="#E9C46A" stroke="white" stroke-width="2" />
+                <g transform="translate(504, 168)" stroke="white" stroke-width="1.2" fill="none" stroke-linecap="round">
+                  <rect x="2" y="3" width="12" height="8" rx="1"/>
+                  <path d="M5 6h6M8 6v3"/>
+                </g>
+              </g>
+              <g style="cursor:pointer" onclick="selectPin('oleo')">
+                <circle cx="68" cy="300" r="18" fill="#E76F51" stroke="white" stroke-width="2" />
+                <g transform="translate(60, 294)" stroke="white" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M8 2c-2 3-4 5-4 7.5a4 4 0 0 0 8 0c0-2.5-2-4.5-4-7.5z"/>
+                </g>
+              </g>
+              <g style="cursor:pointer" onclick="selectPin('norte')">
+                <circle cx="480" cy="300" r="18" fill="#2D6A4F" stroke="white" stroke-width="2" />
+                <g transform="translate(472, 292)" stroke="white" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 12l-1.5-2.5h2.5L2 5l1.5-.5"/>
+                  <path d="M12 12l1.5-2.5H11l1.5-5-1.5-.5"/>
+                  <path d="M7 3v2.5l-1.5.5"/>
+                  <path d="M7 3v2.5l1.5.5"/>
+                </g>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-4 d-flex flex-column gap-3">
+          <div class="map-info-card">
+            <div class="map-card-name" id="mi-name">EcoPonto Central</div>
+            <div class="map-card-addr" id="mi-addr">500 m · Rua das Flores, 142</div>
+            <div class="d-flex flex-wrap gap-1 mb-3" id="mi-tags">
+              <span class="eco-tag">Papel</span>
+              <span class="eco-tag">Plástico</span>
+              <span class="eco-tag">Vidro</span>
+              <span class="eco-tag">Metal</span>
+            </div>
+            <button class="btn-rota">Ver Rota →</button>
+          </div>
+
+          <div class="map-info-card">
+            <div class="card-title mb-2">Legenda</div>
+            <div class="d-flex flex-column gap-2">
+              <div class="d-flex align-items-center gap-2 fs-12">
+                <div class="pin-dot" style="background:#2D6A4F"></div>
+                <span style="font-size:12px;">Reciclagem geral</span>
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <div class="pin-dot" style="background:#E9C46A"></div>
+                <span style="font-size:12px;">Eletrônicos</span>
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <div class="pin-dot" style="background:#E76F51"></div>
+                <span style="font-size:12px;">Óleo / Químico</span>
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <div class="pin-dot" style="background:#2D6A4F; opacity:.5"></div>
+                <span style="font-size:12px;">Sua localização</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen" id="tab-denuncia">
+      <div class="row g-3">
+        <div class="col-12">
+          <div class="eco-card">
+            <span class="fl">Tipo de problema</span>
+            <div class="row g-2">
+              <div class="col-6 col-sm-3">
+                <button class="type-chip sel" onclick="selChip(this)">
+                  Lixo acumulado
+                </button>
+              </div>
+              <div class="col-6 col-sm-3">
+                <button class="type-chip" onclick="selChip(this)">
+                  Lixo tóxico
+                </button>
+              </div>
+              <div class="col-6 col-sm-3">
+                <button class="type-chip" onclick="selChip(this)">
+                  Lixo eletrônico
+                </button>
+              </div>
+              <div class="col-6 col-sm-3">
+                <button class="type-chip" onclick="selChip(this)">
+                  Óleo / Químico
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="eco-card h-100">
+            <span class="fl">Endereço</span>
+            <input class="fi mb-3" type="text" placeholder="Rua, número, bairro...">
+            <span class="fl">Descrição</span>
+            <textarea class="fi" placeholder="Descreva o problema com detalhes..."></textarea>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="eco-card h-100">
+            <span class="fl">Foto do local</span>
+            <div class="upload-zone">
+              <div class="upload-ico">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="7" width="18" height="13" rx="2"/>
+                  <circle cx="12" cy="13.5" r="3"/>
+                  <path d="M8 7l1.5-2.5h5L16 7"/>
+                </svg>
+              </div>
+              <div class="upload-txt">Clique ou arraste uma foto aqui</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-submit mt-4" onclick="submitDenuncia()">Enviar Denúncia</button>
+    </div>
+
+    <div class="screen" id="tab-perfil">
+      <div class="profile-hero">
+        <div class="d-flex align-items-center gap-4">
+          <div class="prof-av">U</div>
+          <div>
+            <div class="prof-name">Usuário</div>
+            <div class="prof-level">Nível 2 · Eco Amigo</div>
+            <div class="d-flex gap-2 mt-3">
+              <div class="pstat">
+                <span class="pstat-val">300</span>
+                <span class="pstat-key">Pontos</span>
+              </div>
+              <div class="pstat">
+                <span class="pstat-val">4</span>
+                <span class="pstat-key">Descartes</span>
+              </div>
+              <div class="pstat">
+                <span class="pstat-val">2</span>
+                <span class="pstat-key">Denúncias</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-12 col-lg-6">
+          <div class="eco-card">
+            <div class="card-title">Recompensas</div>
+            <div class="d-flex flex-column gap-2">
+              <div class="rec-row">
+                <div class="rec-ico ico-coffee">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 8h11v8a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V8z"/>
+                    <path d="M16 10h2a2 2 0 0 1 0 4h-2"/>
+                    <path d="M7 5h7"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="rec-name">Café Grátis – Le Petit Café</div>
+                  <div class="rec-pts">200 pts</div>
+                </div>
+                <div class="rec-badge badge-ok">Resgatar</div>
+              </div>
+
+              <div class="rec-row">
+                <div class="rec-ico ico-bus">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="6" width="16" height="12" rx="2"/>
+                    <path d="M4 11h16M8 18v2M16 18v2"/>
+                    <circle cx="8" cy="16" r="1" fill="currentColor" stroke="none"/>
+                    <circle cx="16" cy="16" r="1" fill="currentColor" stroke="none"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="rec-name">Vale transporte – R$20,00</div>
+                  <div class="rec-pts">450 pts</div>
+                </div>
+                <div class="rec-badge badge-lock">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="6" y="11" width="12" height="9" rx="1.5"/>
+                    <path d="M8 11V8a4 4 0 0 1 8 0v3"/>
+                  </svg>
+                  450 pts
+                </div>
+              </div>
+
+              <div class="rec-row">
+                <div class="rec-ico ico-flame">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3c-2 3-4 4.5-4 7.5a4 4 0 0 0 8 0c0-3-2-4.5-4-7.5z"/>
+                    <path d="M12 14v3"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="rec-name">Vale Gás – Lig-Gás</div>
+                  <div class="rec-pts">1000 pts</div>
+                </div>
+                <div class="rec-badge badge-lock">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="6" y="11" width="12" height="9" rx="1.5"/>
+                    <path d="M8 11V8a4 4 0 0 1 8 0v3"/>
+                  </svg>
+                  1000 pts
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-6">
+          <div class="eco-card">
+            <div class="card-title">Progresso</div>
+            <div class="d-flex flex-column gap-4">
+              <div>
+                <div class="prog-label">
+                  <span>Descartes realizados</span><span>4 / 10</span>
+                </div>
+                <div class="prog-bar">
+                  <div class="prog-fill" style="width:40%"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="prog-label">
+                  <span>Denúncias enviadas</span><span>2 / 5</span>
+                </div>
+                <div class="prog-bar">
+                  <div class="prog-fill" style="width:40%"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="prog-label">
+                  <span>Pontos acumulados</span><span>300 / 500</span>
+                </div>
+                <div class="prog-bar">
+                  <div class="prog-fill" style="width:60%"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="prog-label">
+                  <span>Próximo nível (Eco amigo -> Herói da vizinhança )</span><span>300 / 500 pts</span>
+                </div>
+                <div class="prog-bar">
+                  <div class="prog-fill prog-fill-amber" style="width:60%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="eco-toast" id="eco-toast">Denúncia enviada com sucesso!</div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/icons.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>
