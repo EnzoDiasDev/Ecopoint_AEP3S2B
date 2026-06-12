@@ -8,6 +8,8 @@ O **EcoPoint** é uma aplicação web desenvolvida com foco em sustentabilidade 
 
 O projeto foi desenvolvido utilizando tecnologias front-end modernas, priorizando acessibilidade, responsividade, experiência do usuário e organização modular do código.
 
+[Clique aqui para ter a sua primeira experiência com EcoPoint](https://ecopoint-tau.vercel.app/)
+
 ---
 
 ## Objetivo
